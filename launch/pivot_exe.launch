@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <!-- pivot observation node start -->
+  <node  pkg="koopman_pivot" type="koopman_policy.py" output="screen" name="koopman_policy"/>
+
+
+</launch>

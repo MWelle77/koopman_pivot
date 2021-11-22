@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Franka gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <!-- Start paused, simulation will be started, when Pandas were loaded -->
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <include file="$(find franka_gazebo)/launch/panda.launch">
+    <arg name="arm_id" value="panda"/>
+    <arg name="controller" value="kth_joint_acceleration_effort_interface_controller"/>
+    <arg name="gazebo"     value="false" />
+  </include>
+
+
+</launch>
