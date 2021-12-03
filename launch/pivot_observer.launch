@@ -3,14 +3,30 @@
 
 
   <!-- start camera stream -->
-  <include file="$(find video_stream_opencv)/launch/camera.launch">
+  <!--include file="$(find video_stream_opencv)/launch/camera.launch">
     <arg name="video_stream_provider" value="0"/>
-  </include> 
+    <arg name="width" value="1920"/>
+    <arg name="height" value="1080"/>
+    <arg name="camera_info_url" value="fake"/>
+  </include--> 
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video2" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+
 
   <!-- pivot observation node start -->
   <node  pkg="koopman_pivot" type="pivot_observer.py" output="screen" name="pivot_observer"/>
 
   <!-- rviz -->
-  <node  pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find koopman_pivot)/config/pivot.rviz"/>
+  <!--node  pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find koopman_pivot)/config/pivot.rviz"/-->
 
 </launch>

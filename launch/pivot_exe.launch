@@ -3,7 +3,7 @@
 
 
   <!-- pivot observation node start -->
-  <node  pkg="koopman_pivot" type="koopman_policy.py" output="screen" name="koopman_policy"/>
+  <node  pkg="koopman_pivot" type="koopman_policy_ros.py" output="screen" name="koopman_policy_ros"/>
 
 
 </launch>
